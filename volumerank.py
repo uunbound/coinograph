@@ -14,7 +14,7 @@ if __name__ == '__main__':
         ['#', 'Name', 'Market Cap', 'Volume (24h)', '% Volume/Cap (24h)', '% Change (24h)']
     ]
     locale.setlocale( locale.LC_ALL, '' )
-    for coin in ratio_sorted[:100]:
+    for coin in ratio_sorted[:50]:
         if coin['percent_change_24h']:
             vol_cap_ratio = Decimal(Decimal(coin['24h_volume_usd']) / Decimal(coin['market_cap_usd']) * 100).quantize(Decimal('0.01'))
             row = [
