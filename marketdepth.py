@@ -37,7 +37,10 @@ def fetch_ticker(pair_from, pair_to):
     )
     resp = requests.get(url)
     res = json.loads(resp.content)
-    return res['result']['Last'], res['result']['Bid'], res['result']['Ask']
+    last = Decimal(res['result']['Last']).quantize(Decimal('.00000001'))
+    bid = Decimal(res['result']['Bid']).quantize(Decimal('.00000001'))
+    ask = Decimal(res['result']['Ask']).quantize(Decimal('.00000001'))
+    return last, bid, ask
 
 def create_depth_levels(bids, asks, window_percentage):
     middle = Decimal((asks[0]['Rate'] - bids[0]['Rate']) / 2 + bids[0]['Rate']).quantize(Decimal('.00000001'))
